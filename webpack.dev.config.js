@@ -1,8 +1,10 @@
+//개발용 react 설정 운영과는 다른 설정방식을 따라간다.
+//운영과는 다르게 hotloader 라던지, 개발에 필요한부분을 보여준다
 const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    //entry 는 import 구문 피라미드 구조이다
+
     entry: [
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://localhost:3000',
@@ -11,7 +13,7 @@ module.exports = {
     ],
 
     devtool: 'inline-source-map',
-    // js 의 실행파일 생성경로
+
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
