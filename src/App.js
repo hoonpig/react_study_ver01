@@ -2,10 +2,12 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
+//hot loader를위해서 화면에 즉시반영하는구문
 if(module.hot){
-    module.hot.accpet();
+    module.hot.accept();
 }
 
+//화면에 뿌려지는 구문
 ReactDOM.render(
-    <div></div>, document.getElementById("app")
+    <div>Hello World</div>, document.getElementById("app")
 )
