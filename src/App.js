@@ -29,37 +29,56 @@ if(module.hot){
         - es5 이후 : let(변수), const(상수)
 */
 
-const
+const text = "To do hoonpig List";
+const todos = [
+    "이것도 해야 되고~",
+    "저것도 해야 되고~",
+    "그것도 해야 되고~",
+    "언제 다 하나~~"
+];
+
+const Title = (
+    <div className="page-header">
+        <h1>{text}</h1>
+    </div>
+);
+
+const AddLi = (
+    <div className="input-group input-group-lg">
+        <input type="text" className="form-control" placeholder="할 일을 입력해주세요" />
+        <span className="input-group-btn">
+            <button className="btn btn-primary" type="button">등록</button>
+        </span>
+    </div>
+);
+
+
+/*
+    기존에 li tag 가 반복적으로 되어있던부분을 처리해주는부분
+    : todos 배열에 있는 값을 return 한다.
+    : => 이건 좌에서 우로향한 화살표. 일종의 문법
+    : idx 는 배열의 n번째 값을 가져온다.
+    : li tag 부분의 key 값은 DOM 의 rander 처리를 빠르게 하기위해서 Key 값을 부여한다.
+        ( 부여하지 않아도 상관없으나, 가상의 메모리 DOM을 이용하기 때문에 warnning 이 발생할수있다.
+          화면에서는 큰 문제는 없으나, key 를 밟급해주는것이 속도적인 측면에서 좋다. )
+    : 위의 Key 부분이 충돌나면 화면표출시에 속도저하가 발생할수 있으니, key 설계부분도 필요하다.
+*/
+const TodoLi = todos.map((todo, idx) => {
+    return (
+        <li key={"todo" + idx}>
+            <span>{todo}</span>
+            <span className="btn-container"><a href="#">삭제</a></span>
+        </li>
+    );
+});
 
 ReactDOM.render(
-    <div classNameName="container">
-        <div className="page-header">
-            <h1>To do list</h1>
-        </div>
-        <div className="input-group input-group-lg">
-            <input type="text" className="form-control" placeholder="할 일을 입력해주세요" />
-            <span className="input-group-btn">
-                <button className="btn btn-primary" type="button">등록</button>
-            </span>
-        </div>
+    <div className="container">
+        {Title}
+        {AddLi}
         <hr/>
         <ul>
-            <li>
-                <span>이것도 해야 되고</span>
-                <span className="btn-container"><a href="#">삭제</a></span>
-            </li>
-            <li>
-                <span>저것도 해야 되고</span>
-                <span className="btn-container"><a href="#">삭제</a></span>
-            </li>
-            <li>
-                <span>그것도 해야 되고</span>
-                <span className="btn-container"><a href="#">삭제</a></span>
-            </li>
-            <li>
-                <span>언제 다 하나</span>
-                <span className="btn-container"><a href="#">삭제</a></span>
-            </li>
+            {TodoLi}
         </ul>
     </div> ,
      document.getElementById("app")
