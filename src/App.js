@@ -1,6 +1,7 @@
 // package 에에 있는 dependency 를 불러온다. import 와 동일한 효과
-import React from "react"
-import ReactDOM from "react-dom"
+import React from "react";
+import ReactDOM from "react-dom";
+import AddLi from "./components/AddLi.js"
 
 
 //hot loader를위해서 화면에 즉시반영하는구문
@@ -40,15 +41,6 @@ const todos = [
 const Title = (
     <div className="page-header">
         <h1>{text}</h1>
-    </div>
-);
-
-const AddLi = (
-    <div className="input-group input-group-lg">
-        <input type="text" className="form-control" placeholder="할 일을 입력해주세요" />
-        <span className="input-group-btn">
-            <button className="btn btn-primary" type="button">등록</button>
-        </span>
     </div>
 );
 
