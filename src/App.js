@@ -1,6 +1,7 @@
 // package 에에 있는 dependency 를 불러온다. import 와 동일한 효과
 import React from "react";
 import ReactDOM from "react-dom";
+//class 를 가져올수있다.
 import AddLi from "./components/AddLi.js"
 
 
@@ -64,10 +65,16 @@ const TodoLi = todos.map((todo, idx) => {
     );
 });
 
+/*
+    AddLi 를 클래스로 구현한 이후, 기존의 소스가 변경됨
+    {AddLi} 에서 AddLi/>    형태의 태그로 변경된다.
+    AddLi.js 에서 export 한이후, import 를 해준뒤, 상단의 내용처럼 render 부분에 작성해준다
+    해당코드는 new AddLi(); 와 동일한 의미
+*/
 ReactDOM.render(
     <div className="container">
         {Title}
-        {AddLi}
+        <AddLi/>
         <hr/>
         <ul>
             {TodoLi}
