@@ -2,7 +2,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 //class 를 가져올수있다.
-import AddLi from "./components/AddLi.js"
+import Todo from "./containers/Todo.js"
+
 
 
 //hot loader를위해서 화면에 즉시반영하는구문
@@ -29,56 +30,12 @@ if(module.hot){
     : es5 기준 변수선언부형태
         - es5 이전 : var
         - es5 이후 : let(변수), const(상수)
-*/
-
-const text = "To do hoonpig List";
-const todos = [
-    "이것도 해야 되고~",
-    "저것도 해야 되고~",
-    "그것도 해야 되고~",
-    "언제 다 하나~~"
-];
-
-const Title = (
-    <div className="page-header">
-        <h1>{text}</h1>
-    </div>
-);
-
-
-/*
-    기존에 li tag 가 반복적으로 되어있던부분을 처리해주는부분
-    : todos 배열에 있는 값을 return 한다.
-    : => 이건 좌에서 우로향한 화살표. 일종의 문법
-    : idx 는 배열의 n번째 값을 가져온다.
-    : li tag 부분의 key 값은 DOM 의 rander 처리를 빠르게 하기위해서 Key 값을 부여한다.
-        ( 부여하지 않아도 상관없으나, 가상의 메모리 DOM을 이용하기 때문에 warnning 이 발생할수있다.
-          화면에서는 큰 문제는 없으나, key 를 밟급해주는것이 속도적인 측면에서 좋다. )
-    : 위의 Key 부분이 충돌나면 화면표출시에 속도저하가 발생할수 있으니, key 설계부분도 필요하다.
-*/
-const TodoLi = todos.map((todo, idx) => {
-    return (
-        <li key={"todo" + idx}>
-            <span>{todo}</span>
-            <span className="btn-container"><a href="#">삭제</a></span>
-        </li>
-    );
-});
-
-/*
-    AddLi 를 클래스로 구현한 이후, 기존의 소스가 변경됨
-    {AddLi} 에서 AddLi/>    형태의 태그로 변경된다.
-    AddLi.js 에서 export 한이후, import 를 해준뒤, 상단의 내용처럼 render 부분에 작성해준다
-    해당코드는 new AddLi(); 와 동일한 의미
+    : AddLi 를 클래스로 구현한 이후, 기존의 소스가 변경됨
+        {AddLi} 에서 AddLi/>    형태의 태그로 변경된다.
+        AddLi.js 에서 export 한이후, import 를 해준뒤, 상단의 내용처럼 render 부분에 작성해준다
+        해당코드는 new AddLi(); 와 동일한 의미
 */
 ReactDOM.render(
-    <div className="container">
-        {Title}
-        <AddLi/>
-        <hr/>
-        <ul>
-            {TodoLi}
-        </ul>
-    </div> ,
+     <Todo/>,
      document.getElementById("app")
 )
