@@ -1,13 +1,5 @@
 import React from "react";
 
-const todos = [
-    "이것도 해야 되고~",
-    "저것도 해야 되고~",
-    "그것도 해야 되고~",
-    "언제 다 하나~~"
-];
-
-
 /*
     기존에 li tag 가 반복적으로 되어있던부분을 처리해주는부분
     : todos 배열에 있는 값을 return 한다.
@@ -28,7 +20,7 @@ class TodoLi extends React.Component{
     }
 
     render(){
-        const todoLi = todos.map((todo, idx) => {
+        const todoLi = this.props.todos.map((todo, idx) => {
             return (
                 <li key={"todo" + idx}>
                     <span>{todo}</span>
