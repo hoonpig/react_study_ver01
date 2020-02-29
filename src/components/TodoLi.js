@@ -1,5 +1,23 @@
 import React from "react";
 
+
+const TodoLi = (props) => {
+
+    const onClickRemoveButton = () => {
+          props.handleRemovedData(props.todo);
+      }
+
+
+    return (
+        <li>
+            <span>{props.todo}</span>
+            <span className="btn-container">
+                <a href="#" onClick={onClickRemoveButton}>삭제</a>
+            </span>
+        </li>
+    );
+}
+
 /*
     기존에 li tag 가 반복적으로 되어있던부분을 처리해주는부분
     : todos 배열에 있는 값을 return 한다.
@@ -14,6 +32,7 @@ import React from "react";
     class 로 변경
 */
 
+/* class > function
 class TodoLi extends React.Component{
     constructor(){
         super();
@@ -43,5 +62,5 @@ class TodoLi extends React.Component{
 
     }
 }
-
+*/
 export default TodoLi;
