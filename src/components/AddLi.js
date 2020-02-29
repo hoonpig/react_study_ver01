@@ -1,8 +1,40 @@
 import React from "react";
+import PropTypes from "prop-types";
+
+
+/*
+    클래스 > 함수형으로 변경
+        - this 를 사용할수 없다.
+*/
+const AddLi = (props) => {
+    let inputBox =null;
+
+    const onClickAddButton = () => {
+        console.log("input Text");
+        props.handleAddedData(inputBox.value);
+    }
+
+    return(
+        <div className="input-group input-group-lg">
+            <input ref={input => {inputBox = input}} type="text" className="form-control" placeholder="할 일을 입력해주세요" />
+            <span className="input-group-btn">
+                <button onClick={onClickAddButton} className="btn btn-primary" type="button">등록</button>
+            </span>
+        </div>
+
+    );
+};
+
+AddLi.propTypes =   {
+    handleAddedData : PropTypes.func
+}
 
 /*
     클래스명과 파일명은 동일하게 하는게 일반적
+    class > 함수형으로 변경하는 작업
+    클래스형일떄는 this 를 사용해도 되지만 함수형 프로그램에서는 this 를 사용할수 없다.
 */
+/*
 class AddLi extends React.Component{
     // 생성자
     // oop 의 부모클래스의 생성자 초기화와 동일함
@@ -30,6 +62,6 @@ class AddLi extends React.Component{
         );
     }
 }
-
+*/
 // AddLi 라는 클래스를 다른곳에서 사용할수있게 처리해주는 구문
 export default AddLi;

@@ -55,13 +55,13 @@ class Todo extends React.Component{
     }   
     componentDidMount() { 
         console.log('componentDidMount'); 
-        /*
+
         const retundedtext="To do List study";
         const returnedtodos = [
-            "test1",
-            "test2",
-            "test3",
-            "test4"
+            "이것도 해야 되고~",
+            "저것도 해야 되고~",
+            "그것도 해야 되고~",
+            "언제 다 하나~~"
         ]
 
         this.setState((prevState) => {
@@ -70,7 +70,7 @@ class Todo extends React.Component{
                 todos: returnedtodos
             }
         });
-        */
+
     }   
     componentWillReceiveProps() { 
         console.log('componentWillReceiveProps'); 
