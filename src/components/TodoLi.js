@@ -17,25 +17,30 @@ import React from "react";
 class TodoLi extends React.Component{
     constructor(){
         super();
+
+        this.onClickRemoveButtonFn = this.onClickRemoveButton.bind(this);
     }
 
+
+    onClickRemoveButton(){
+        this.props.handleRemovedData(this.props.todo);
+    }
+
+
     render(){
-        const todoLi = this.props.todos.map((todo, idx) => {
-            return (
-                <li key={"todo" + idx}>
-                    <span>{todo}</span>
-                    <span className="btn-container"><a href="#">삭제</a></span>
-                </li>
-            );
-        });
         // 그낭 todoLi 를 반환하면 에러가난다.
         // 이유는 루트태그가 없이 결과값을 반환하기 때문인데, 그래서 <div> 로 감싸준뒤, 변수형태로 {todoLi} 로 반환해준다.
         // 루트태그를 처리하는 방법은 다양한다.
         return(
-            <div>
-                {todoLi}
-            </div>
+            <li>
+                <span>{this.props.todo}</span>
+                <span className="btn-container">
+                    <a href="#" onClick={this.onClickRemoveButtonFn}>삭제</a>
+                </span>
+            </li>
            );
+
+
     }
 }
 

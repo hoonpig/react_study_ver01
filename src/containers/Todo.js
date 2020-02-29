@@ -3,6 +3,9 @@ import AddLi from "../components/AddLi.js"
 import Title from "../components/Title.js"
 import TodoLi from "../components/TodoLi.js"
 
+
+
+//props 형태의 선언부
 const text = "To do hoonpig List";
 const todos = [
     "이것도 해야 되고~",
@@ -26,22 +29,104 @@ const todos = [
         : state 를 실행하게되면, render 가 실행되기때문에 빈번하게 발생되면 오히려 성능저하 발생
 
     - 사용법
-        현재 컨텍스트 변수명 = {자식이 사용하게될 변수명}
+         자식이 사용하게될 변수명 = {현재 컨텍스트 변수명}
 */
 
+//state 형태의 선언부
 class Todo extends React.Component{
     constructor(){
         super();
+
+        this.state = {
+            text:"",
+            todos: [
+                    ]
+        };
+
+        this.handleAddedDataFn = this.handleAddedData.bind(this);
+        this.handleRemovedDataFn = this.handleRemovedData.bind(this);
+
+    }
+
+
+    //react 의 life cycle
+    componentWillMount() { 
+        console.log('componentWillMount'); 
+    }   
+    componentDidMount() { 
+        console.log('componentDidMount'); 
+        /*
+        const retundedtext="To do List study";
+        const returnedtodos = [
+            "test1",
+            "test2",
+            "test3",
+            "test4"
+        ]
+
+        this.setState((prevState) => {
+            return {
+                text: retundedtext,
+                todos: returnedtodos
+            }
+        });
+        */
+    }   
+    componentWillReceiveProps() { 
+        console.log('componentWillReceiveProps'); 
+    }   
+    componentWillUpdate() { 
+        console.log('componentWillUpdate'); 
+    }   
+    componentDidUpdate() { 
+        console.log('componentDidUpdate'); 
+    }   
+    componentWillUnmount() { 
+        console.log('componentWillUnmount'); 
+    }
+
+    handleAddedData(todo){
+        this.setState((prevState) => {
+            const todos = prevState.todos;
+            todos.push(todo);
+
+            return {
+                todos: todos
+            };
+        });
+
+    }
+
+    handleRemovedData(todo){
+        this.setState((prevState) =>{
+            const todos = prevState.todos;
+            const index = todos.indexOf(todo);
+
+            todos.splice(index, 1);
+
+            return{
+                todos: todos
+            }
+        });
     }
 
     render(){
+        console.log('rennder'); 
+        // 해당 구문은 루프..map 을 통해서 루프처리가 된다.
+        // TodoLin.js 부분에 전달이 된다.
+        const todoLi = this.state.todos.map((todo, idx) => {
+            return (
+                <TodoLi todo={todo} key={"todo"+idx} handleRemovedData={this.handleRemovedDataFn}/>
+            );
+        });
+
         return(
             <div className="container">
-                <Title text={text}/>
-                <AddLi/>
+                <Title text={this.state.text}/>
+                <AddLi handleAddedData={this.handleAddedDataFn}/>
                 <hr/>
                 <ul>
-                    <TodoLi todos={todos}/>
+                    {todoLi}
                 </ul>
             </div>
         );
