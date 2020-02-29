@@ -1,13 +1,5 @@
 import React from "react";
 
-const todos = [
-    "이것도 해야 되고~",
-    "저것도 해야 되고~",
-    "그것도 해야 되고~",
-    "언제 다 하나~~"
-];
-
-
 /*
     기존에 li tag 가 반복적으로 되어있던부분을 처리해주는부분
     : todos 배열에 있는 값을 return 한다.
@@ -25,25 +17,30 @@ const todos = [
 class TodoLi extends React.Component{
     constructor(){
         super();
+
+        this.onClickRemoveButtonFn = this.onClickRemoveButton.bind(this);
     }
 
+
+    onClickRemoveButton(){
+        this.props.handleRemovedData(this.props.todo);
+    }
+
+
     render(){
-        const todoLi = todos.map((todo, idx) => {
-            return (
-                <li key={"todo" + idx}>
-                    <span>{todo}</span>
-                    <span className="btn-container"><a href="#">삭제</a></span>
-                </li>
-            );
-        });
         // 그낭 todoLi 를 반환하면 에러가난다.
         // 이유는 루트태그가 없이 결과값을 반환하기 때문인데, 그래서 <div> 로 감싸준뒤, 변수형태로 {todoLi} 로 반환해준다.
         // 루트태그를 처리하는 방법은 다양한다.
         return(
-            <div>
-                {todoLi}
-            </div>
+            <li>
+                <span>{this.props.todo}</span>
+                <span className="btn-container">
+                    <a href="#" onClick={this.onClickRemoveButtonFn}>삭제</a>
+                </span>
+            </li>
            );
+
+
     }
 }
 
